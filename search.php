@@ -1,5 +1,8 @@
 <?php
 include 'Frontend/header.php';
+if(!isset($_SESSION['login'])){
+    header("Location: login.php");
+}
 ?>
 <section>
     <form>
@@ -9,7 +12,7 @@ include 'Frontend/header.php';
     <span id="response"></span>
 </section>
 <section id="video">
-    
+
 </section>
 <?php
 include 'Frontend/footer.php';

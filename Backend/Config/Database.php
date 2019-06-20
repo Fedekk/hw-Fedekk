@@ -12,7 +12,7 @@ class Database {
         $this -> host = 'localhost';
         $this -> user = 'fede';
         $this -> pass = 'bubu';
-        $this -> db = 'mhw3';
+        $this -> db = 'hw1';
     }
 }
 ?>

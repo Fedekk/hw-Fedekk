@@ -1,6 +1,7 @@
 <?php
 namespace Backend\Database;
-require 'Config/Database.php';
+$path = 'Backend/Config/';
+require_once $path.'Database.php';
 
 use Backend\Config\Database as Database;
 

@@ -1,5 +1,8 @@
 <?php
 include 'Frontend/header.php';
+if(!isset($_SESSION['login'])){
+    header("Location: login.php");
+}
 ?>
 <section class="collections">
     <form>

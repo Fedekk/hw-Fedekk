@@ -2,7 +2,7 @@
 namespace Backend\Model;
 
 // require '../Database/Connection.php';
-require 'Base.php';
+require_once __ROOT__.'/Backend/Model/Base.php';
 
 use Backend\Database\Connection as Connection;
 use Backend\Model\Base;
@@ -26,6 +26,21 @@ class Utente extends Base{
         print_r(json_encode($data));
         mysqli_free_result($result);
         }
+        $newc->close();
+    }
+    public static function login($nickname, $password){
+        $newc = new Connection();
+        $newc->connect();
+        $query = "SELECT * FROM ".self::$table." WHERE nickname = '$nickname' AND pwd = '$password'";
+        $result = mysqli_query($newc->conn,$query);
+        if($result){
+         $n = mysqli_num_rows($result);
+         return $n;
+        }
+        else{
+            echo "Qualcosa e' andato storto";
+        }
+        mysqli_free_result($result);
         $newc->close();
     }
 }

@@ -7,8 +7,8 @@ require 'Base.php';
 use Backend\Database\Connection as Connection;
 use Backend\Model\Base;
 
-class Risultato extends Base{
-    private static $table = "risultato";
+class Raccolta extends Base{
+    private static $table = "raccolte";
     public function __construct(){
         parent::setTable(self::$table);
     }

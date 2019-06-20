@@ -6,9 +6,9 @@ use Backend\Model\Contenuto;
 
 class ContenutoController extends Contenuto{
 
-    public static function index($id){
+    public static function index(){
         $contenuto = new Contenuto();
-        $contenuto::findArg($id);
+        // $contenuto::findArg($id);
     }
 }
 

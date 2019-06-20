@@ -7,23 +7,24 @@ require 'Base.php';
 use Backend\Database\Connection as Connection;
 use Backend\Model\Base;
 
-class Argomento extends Base{
-    private static $table = "argomento";
+class Utente extends Base{
+    private static $table = "utenti";
     public function __construct(){
         parent::setTable(self::$table);
     }
-    public static function randomRow(){
+    public static function findArg($id){
+        $data = array();
         $newc = new Connection();
-        $num = 0;
         $newc->connect();
-        $query = "SELECT * FROM ".self::$table." ORDER BY RAND() LIMIT 1";
+        $query = "SELECT * FROM ".self::$table." WHERE argomento_id = '$id'";
         $result = mysqli_query($newc->conn,$query);
-        $num = mysqli_num_rows($result);
         if($result){
-        for($i=0;$i<$num;$i++){
+        for($i=0;$i<mysqli_num_rows($result);$i++){
             $row = mysqli_fetch_assoc($result);
+            array_push($data, $row);
         }
-        print_r(json_encode($row));
+        print_r(json_encode($data));
+        mysqli_free_result($result);
         }
         $newc->close();
     }

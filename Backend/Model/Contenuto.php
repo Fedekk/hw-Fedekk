@@ -8,7 +8,7 @@ use Backend\Database\Connection as Connection;
 use Backend\Model\Base;
 
 class Contenuto extends Base{
-    private static $table = "contenuto";
+    private static $table = "contenuti";
     public function __construct(){
         parent::setTable(self::$table);
     }

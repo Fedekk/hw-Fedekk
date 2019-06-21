@@ -1,7 +1,8 @@
 <?php
 $curlSES=curl_init(); 
+$q = $_GET['q'];
 $key = "AIzaSyAXx0zv_eIgtZgiBRrlCpsG9m6mIa3Lg5s";
-$url = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&order=viewCount&q=prova&regionCode=it&type=video&videoDefinition=high&videoEmbeddable=true&key=AIzaSyAXx0zv_eIgtZgiBRrlCpsG9m6mIa3Lg5s";
+$url = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&order=viewCount&q=".urlencode($q)."&regionCode=it&type=video&videoDefinition=high&videoEmbeddable=true&key=AIzaSyAXx0zv_eIgtZgiBRrlCpsG9m6mIa3Lg5s";
 //step1
 //step2
 curl_setopt($curlSES,CURLOPT_URL,$url);

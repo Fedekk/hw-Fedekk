@@ -13,11 +13,13 @@ session_start();
 </head>
 <body>
 <main id="page">
+<?php if(isset($_COOKIE['login']) || isset($_SESSION['login'])) : ?>
     <nav>
         <ul>
-            <li><a href="http://">Home</a></li>
-            <li><a href="http://">Ricerca</a></li>
-            <li><a href="http://">Raccolte</a></li>
+            <li><a href="home.php">Home</a></li>
+            <li><a href="search.php">Ricerca</a></li>
+            <li><a href="raccolta.php">Raccolte</a></li>
             <li><a href="logout.php">Logout</a></li>
         </ul>
     </nav>
+<?php endif; ?>

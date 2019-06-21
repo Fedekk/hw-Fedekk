@@ -1,7 +1,7 @@
 <?php
 namespace Backend;
 include 'Frontend/header.php';
-if(isset($_SESSION['login'])){
+if(isset($_SESSION['login']) || isset($_COOKIE['login'])){
     header("Location: home.php");
 }
 require_once 'Backend/Database/Connection.php';
@@ -30,6 +30,7 @@ if(isset($_POST['send'])){
         if($result){
             $_SESSION['login'] = $nickname;
             mysqli_free_result($result); 
+            if(isset($_POST['ricordami'])) setcookie("login", $nickname);
             header("Location: home.php");
         }
         else{

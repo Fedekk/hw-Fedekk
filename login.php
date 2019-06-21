@@ -1,7 +1,7 @@
 <?php
 namespace Backend;
 include 'Frontend/header.php';
-if(isset($_SESSION['login'])){
+if(isset($_SESSION['login']) || isset($_COOKIE['login'])){
     header("Location: home.php");
 }
 require_once 'Backend/UtenteController.php';
@@ -14,7 +14,10 @@ if(isset($_POST['send'])){
     $result = $utente::login($nickname, $pwd);
     if($result){
         $_SESSION['login'] = $nickname;
+        if(isset($_POST['ricordami']))
+        setcookie("login", $nickname);
         header("Location: home.php");
+        exit;
     }
     else{
         echo "Impossibile accedere";

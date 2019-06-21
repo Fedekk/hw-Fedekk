@@ -7,11 +7,11 @@ if(!isset($_SESSION['login'])){
 <section>
     <form>
         <input type="search" name="q" id="search">
-        <input type="button" value="Cerca">
+        <input type="button" onclick="loadVideos(this.parentNode)" value="Cerca">
     </form>
     <span id="response"></span>
 </section>
-<section id="video">
+<section id="videos">
 
 </section>
 <?php

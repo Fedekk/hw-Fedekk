@@ -7,7 +7,7 @@ if(!isset($_SESSION['login'])){
 <section class="collections">
     <form>
         <input type="search" name="r" id="create">
-        <input type="button" value="Crea">
+        <input type="button" onclick="creaRaccolta(this.parentNode)" value="Crea">
     </form>
     <span id="response"></span>
 

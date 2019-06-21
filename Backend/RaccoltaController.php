@@ -1,7 +1,8 @@
 <?php
 namespace Backend;
 
-require './Model/Raccolta.php';
+
+require_once __DIR__.'./Model/Raccolta.php';
 use Backend\Model\Raccolta;
 
 class RaccoltaController extends Raccolta{

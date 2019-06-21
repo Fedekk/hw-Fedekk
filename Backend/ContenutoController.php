@@ -1,7 +1,7 @@
 <?php
 namespace Backend;
 
-require './Model/Contenuto.php';
+require_once __DIR__.'./Model/Contenuto.php';
 use Backend\Model\Contenuto;
 
 class ContenutoController extends Contenuto{

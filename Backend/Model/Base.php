@@ -1,7 +1,6 @@
 <?php
 namespace Backend\Model;
-
-require __ROOT__.'/Backend/Database/Connection.php';
+require_once __DIR__.'/../Database/Connection.php';
 
 use Backend\Database\Connection as Connection;
 

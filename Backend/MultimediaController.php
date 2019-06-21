@@ -1,7 +1,8 @@
 <?php
 namespace Backend;
 
-require './Model/Multimedia.php';
+
+require_once __DIR__.'./Model/Multimedia.php';
 use Backend\Model\Multimedia as Multimedia;
 
 class MultimediaController extends Multimedia{

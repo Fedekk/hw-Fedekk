@@ -1,9 +1,7 @@
 <?php
 namespace Backend;
 
-define('__ROOT__', dirname(dirname(__FILE__))); 
-require_once __ROOT__.'/Backend/Model/Utente.php';
-
+require_once __DIR__.'./Model/Utente.php';
 use Backend\Model\Utente;
 
 class UtenteController extends Utente{

@@ -8,8 +8,8 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Homework 1</title>
-    <script type="text/javascript" src="Frontend/js/validate.js" defer="true"></script>
-    <script type="text/javascript" src="Frontend/js/utils.js" defer="true"></script>
+    <script type="text/javascript" src="Frontend/js/validate.js" defer></script>
+    <script type="text/javascript" src="Frontend/js/utils.js" defer></script>
 </head>
 <body>
 <main id="page">

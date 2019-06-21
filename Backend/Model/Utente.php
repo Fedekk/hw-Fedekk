@@ -35,7 +35,8 @@ class Utente extends Base{
         $result = mysqli_query($newc->conn,$query);
         if($result){
          $n = mysqli_num_rows($result);
-         return $n;
+         $row = mysqli_fetch_assoc($result);
+         return $row['id'];
         }
         else{
             echo "Qualcosa e' andato storto";

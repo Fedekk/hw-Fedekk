@@ -8,6 +8,9 @@ use Backend\Database\Connection as Connection;
 use Backend\Model\Base;
 
 class Contenuto extends Base{
+    public $id;
+    public $risorsa;
+
     private static $table = "contenuti";
     public function __construct(){
         parent::setTable(self::$table);
@@ -23,6 +26,20 @@ class Contenuto extends Base{
             $row = mysqli_fetch_assoc($result);
             array_push($data, $row);
         }
+        print_r(json_encode($data));
+        mysqli_free_result($result);
+        }
+        $newc->close();
+    }
+    public function save(){
+        $newc = new Connection();
+        $newc->connect();
+        $query = "INSERT INTO ".$table." (risorsa) VALUES ('".$this->risorsa."')'";
+        $result = mysqli_query($newc->conn,$query);
+        if($result){
+            $data = (object) [
+                'response' => 'OK'
+            ];
         print_r(json_encode($data));
         mysqli_free_result($result);
         }

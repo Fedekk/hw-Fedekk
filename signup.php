@@ -28,8 +28,9 @@ if(isset($_POST['send'])){
         $query = "INSERT INTO utenti (`nome`,`cognome`,`nickname`,`pwd`,`email`) VALUES ('$nome', '$cognome', '$nickname', '$pwd', '$email')";
         $result = mysqli_query($link->conn, $query) or die(mysqli_error($link->conn));
         if($result){
-            $_SESSION['login'] = $nickname;
+            $_SESSION['login']['username'] = $nickname;
             mysqli_free_result($result); 
+            
             if(isset($_POST['ricordami'])) setcookie("login", $nickname);
             header("Location: home.php");
         }

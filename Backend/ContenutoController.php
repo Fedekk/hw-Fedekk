@@ -6,9 +6,15 @@ use Backend\Model\Contenuto;
 
 class ContenutoController extends Contenuto{
 
-    public static function index(){
+    public static function index($request){
         $contenuto = new Contenuto();
         // $contenuto::findArg($id);
+    }
+
+    public static function store($request){
+        $contenuto = new Contenuto();
+        $contenuto->risorsa = $request['risorsa'];
+        $contenuto->save();
     }
 }
 

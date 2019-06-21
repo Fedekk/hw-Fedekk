@@ -6,7 +6,7 @@ use Backend\Model\Utente;
 
 class UtenteController extends Utente{
 
-    public static function index(){
+    public static function index($request){
         $Utente = new Utente();
         $Utente::All();
     }

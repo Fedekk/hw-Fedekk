@@ -13,7 +13,12 @@ if(isset($_POST['send'])){
     $pwd = $_POST['pwd'];
     $result = $utente::login($nickname, $pwd);
     if($result){
-        $_SESSION['login'] = $nickname;
+        $id = $utente::login($nickname, $pwd);
+        $login = array(
+            'username' => $nickname,
+            'id' => $id
+        );
+        $_SESSION['login'] = $login;
         if(isset($_POST['ricordami']))
         setcookie("login", $nickname);
         header("Location: home.php");

@@ -7,7 +7,7 @@ use Backend\Model\Multimedia as Multimedia;
 
 class MultimediaController extends Multimedia{
 
-    public static function index(){
+    public static function index($request){
         $Multimedia = new Multimedia();
         $Multimedia::randomRow();
     }

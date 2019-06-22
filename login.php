@@ -6,7 +6,7 @@ if(isset($_SESSION['login']) || isset($_COOKIE['login'])){
 }
 require_once 'Backend/UtenteController.php';
 use Backend\UtenteController;
-
+function controllaDati() {
 if(isset($_POST['send'])){
     $utente = new UtenteController();
     $nickname = $_POST['nickname'];
@@ -29,15 +29,29 @@ if(isset($_POST['send'])){
     }
 
 }
+}
 ?>
-<section>
-    <form action="" method="POST">
-        <input type="text" required placeholder="Nickname" name="nickname">
-        <input type="text" required placeholder="Password" name="pwd">
+<section class="container-center">
+    <form action="" id="send" method="POST">
+        <input type="text" placeholder="Nickname" name="nickname">
+        <input type="password"  placeholder="Password" name="pwd">
         <label for="ricordami"><input type="checkbox" name="ricordami" id="ricordami">Ricordami</label>
-        <input type="submit" name="send" onsubmit="checkLogin(this)" value="Accedi">
+        <input type="submit"  name="send" value="Accedi">
+        <button><a href="signup.php">Registrati</a></button>
     </form>
+    <span id="msg">
+        <?php
+        controllaDati();
+        ?>
+    </span>
 </section>
+<script type="text/javascript">
+const elem = document.querySelector('#send');
+elem.addEventListener('submit', function(e){
+    if(!checkLogin(elem)) e.submit();
+    else e.preventDefault();
+});
+</script>
 <?php
 include 'Frontend/footer.php';
 ?>

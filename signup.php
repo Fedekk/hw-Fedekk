@@ -41,7 +41,7 @@ if(isset($_POST['send'])){
     $link->close();
 }
 ?>
-<section>
+<section class="container-center">
     <form action="" method="POST">
         <input type="text" required placeholder="Nome" name="nome">
         <input type="text" required placeholder="Cognome" name="cognome">

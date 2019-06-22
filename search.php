@@ -11,7 +11,7 @@ if(!isset($_SESSION['login'])){
     </form>
     <span id="response"></span>
 </section>
-<section id="videos">
+<section id="video">
 
 </section>
 

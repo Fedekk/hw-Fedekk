@@ -170,7 +170,7 @@ function addToRaccolta(_elem){
 }
 
 function loadVideos(elem){
-    let element = document.querySelector('#videos');
+    let element = document.querySelector('#video');
     element.innerHTML = "";
     let string = `doSearch.php?q=${elem.q.value}`;
     let url = `http://localhost/hw-Fedekk/Backend/cURL/${encodeURI(string)}`;

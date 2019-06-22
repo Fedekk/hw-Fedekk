@@ -10,6 +10,7 @@ session_start();
     <title>Homework 1</title>
     <script type="text/javascript" src="Frontend/js/validate.js" defer></script>
     <script type="text/javascript" src="Frontend/js/utils.js" ></script>
+    <link rel="stylesheet" href="Frontend/css/style.css">
 </head>
 <body>
 <main id="page">
@@ -23,5 +24,6 @@ session_start();
             <li><a href="logout.php">Logout</a></li>
         </ul>
     </nav>
+<section id="corpo">
     <input type="hidden" id="idUser" value="<?php echo $_SESSION['login']['id']; ?>" />
 <?php endif; ?>

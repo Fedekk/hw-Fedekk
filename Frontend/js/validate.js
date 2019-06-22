@@ -31,7 +31,7 @@ function checkRegistrazione(e){
 
 function checkLogin(e){
     let response = document.querySelector('#msg');
-    let elem = e.parentNode.children;
+    let elem = e.children;
     let check = false;
     for(let i=0;i<elem.length-1;i++){
         if(elem[i].value == ""){
@@ -39,5 +39,9 @@ function checkLogin(e){
         check = true;
         }
     }
-    if(check==false) { response.textContent = ""; e.submit();}
+    if(check == true){
+        return true;
+    }
+    else
+    if(check==false) { response.textContent = ""; return false;}
 }

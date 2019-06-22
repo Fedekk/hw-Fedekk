@@ -8,6 +8,7 @@ use Backend\Database\Connection as Connection;
 use Backend\Model\Base;
 
 class Raccolta extends Base{
+    public $id;
     public $titolo;
     public $imgurl;
     public $idUtente;
@@ -33,6 +34,20 @@ class Raccolta extends Base{
         $newc->close();
         $resp = json_encode($data, JSON_PRETTY_PRINT);
         print_r($resp);
+    }
+
+    public function up(){
+        $newc = new Connection();
+        $newc->connect();
+        $this->imgurl = mysqli_real_escape_string($newc->conn,$this->imgurl);
+        $query = "UPDATE ".self::$table." SET imgurl = '".$this->imgurl."' WHERE id = $this->id";
+        $result = mysqli_query($newc->conn,$query) or die(mysqli_error($newc->conn));
+        if($result){
+             $data =  array('resp' => 'OK' );
+             echo json_encode($data);
+        }
+        $newc->close();
+        
     }
 }
 

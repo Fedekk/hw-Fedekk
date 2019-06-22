@@ -37,7 +37,7 @@ class Base {
             array_push($data, $row);
         }
         }
-        print_r(json_encode($data));
+        echo json_encode($data);
         $newc->close();
     }
     public static function Where($column,$op,$string){

@@ -12,11 +12,17 @@ class RaccoltaController extends Raccolta{
         $Raccolta::All();
     }
     public static function store($request){
-        $contenuto = new Raccolta();
-        $contenuto->titolo = $request['r'];
-        $contenuto->imgurl = $request['imgurl'];
-        $contenuto->idUtente = $request['idUtente'];
-        $contenuto->save();
+        $raccolta = new Raccolta();
+        $raccolta->titolo = $request['r'];
+        $raccolta->imgurl = $request['imgurl'];
+        $raccolta->idUtente = $request['idUtente'];
+        $raccolta->save();
+    }
+    public static function update($request, $id){
+        $raccolta = new Raccolta();
+        $raccolta->imgurl = $request['imgurl'];
+        $raccolta->id = $id;
+        $raccolta->up();
     }
 }
 

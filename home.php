@@ -19,8 +19,6 @@ if(!isset($_SESSION['login'])){
 document.addEventListener('DOMContentLoaded', function (e){
     const elem = document.querySelector('#video');
     if(elem) addListVideo(elem);
-    const addRaccolta = document.getElementById('addRaccolta');
-    addRaccolta.addEventListener('submit', creaRaccolta);
 });
 
 

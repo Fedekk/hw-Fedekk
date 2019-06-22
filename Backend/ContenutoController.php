@@ -8,7 +8,7 @@ class ContenutoController extends Contenuto{
 
     public static function index($request){
         $contenuto = new Contenuto();
-        // $contenuto::findArg($id);
+        $contenuto::All();
     }
 
     public static function store($request){

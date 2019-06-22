@@ -32,18 +32,49 @@ if(!isset($parts[5]) && !isset($id)){
             break;
         }
         break;
-        case "PATCH": break;
+        case "PATCH": 
+        switch($resource){
+            case "raccolte": 
+            echo "crirsto";
+            RaccoltaController::update($_POST, $id); 
+            break;
+        }
+        break;
         case "PUT": break;
     }
 
 }
 elseif(!isset($parts[5]) && isset($id)){
-    // switch($resource){
-    //     case "contenuti": ContenutoController::index($id); break;
-    //     case "multimedia": MultimediaController::index(); break;
-    //     case "utenti": UtenteController::index(); break;
-    //     case "raccolte": RaccoltaController::index(); break;
-    // }
+    switch($_SERVER['REQUEST_METHOD']){
+        // case "GET": 
+        // switch($resource){
+        //     case "contenuti": ContenutoController::index($_GET); break;
+        //     case "multimedia": MultimediaController::index($_GET); break;
+        //     case "utenti": UtenteController::index($_GET); break;
+        //     case "raccolte": RaccoltaController::index($_GET); break;
+        // }
+        // break;
+        // case "POST": 
+        // switch($resource){
+        //     case "contenuti": ContenutoController::store($_POST); break;
+        //     case "multimedia": MultimediaController::store($_POST); break;
+        //     case "utenti": UtenteController::store($_POST); break;
+        //     case "raccolte": 
+        //     RaccoltaController::store($_POST); 
+        //     break;
+        // }
+        // break;
+        case "PATCH": 
+        parse_str(file_get_contents('php://input'), $_PATCH);
+        switch($resource){
+            case "raccolte": 
+            print_r($_PATCH);
+            RaccoltaController::update($_PATCH, $id); 
+            break;
+        }
+        break;
+        case "PUT": break;
+    }
 }
 else{
     $resp = array(

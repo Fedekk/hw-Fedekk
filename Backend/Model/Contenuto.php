@@ -34,14 +34,14 @@ class Contenuto extends Base{
     public function save(){
         $newc = new Connection();
         $newc->connect();
-        $query = "INSERT INTO ".$table." (risorsa) VALUES ('".$this->risorsa."')'";
-        $result = mysqli_query($newc->conn,$query);
+        $this->risorsa = mysqli_real_escape_string($newc->conn, $this->risorsa);
+        $query = "INSERT INTO ".self::$table." (risorsa) VALUES ('".$this->risorsa."')";
+        $result = mysqli_query($newc->conn,$query) or die(mysqli_error($newc->conn));
         if($result){
             $data = (object) [
                 'response' => 'OK'
             ];
         print_r(json_encode($data));
-        mysqli_free_result($result);
         }
         $newc->close();
     }

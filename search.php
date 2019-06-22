@@ -14,6 +14,7 @@ if(!isset($_SESSION['login'])){
 <section id="videos">
 
 </section>
+
 <?php
 include 'Frontend/footer.php';
 ?>

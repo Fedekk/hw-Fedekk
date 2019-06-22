@@ -20,7 +20,6 @@ session_start();
         <ul>
             <li><a href="home.php">Home</a></li>
             <li><a href="search.php">Ricerca</a></li>
-            <li><a href="raccolta.php">Raccolte</a></li>
             <li><a href="logout.php">Logout</a></li>
         </ul>
     </nav>

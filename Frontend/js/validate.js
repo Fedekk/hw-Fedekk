@@ -33,7 +33,7 @@ function checkLogin(e){
     let response = document.querySelector('#msg');
     let elem = e.children;
     let check = false;
-    for(let i=0;i<elem.length-1;i++){
+    for(let i=0;i<elem.length-2;i++){
         if(elem[i].value == ""){
         response.textContent = "Compilare tutti i campi"
         check = true;

@@ -27,17 +27,25 @@ class Base {
     }
     public static function find($id){
         $newc = new Connection();
-        $data = array();
         $newc->connect();
         $query = "SELECT * FROM ".self::$table." WHERE id='$id'";
-        $result = mysqli_query($newc->conn,$query);
+        $result = mysqli_query($newc->conn,$query) or die(mysqli_error($newc->conn));
+        header('Content-Type: application/json');
         if($result){
         for($i=0;$i<mysqli_num_rows($result);$i++){
             $row = mysqli_fetch_assoc($result);
-            array_push($data, $row);
+            $data = array(
+                'resp' => $row['id']
+            );
+            echo json_encode($data);
         }
         }
-        echo json_encode($data);
+        else{
+            $data = array(
+                'resp' => 'null'
+            );
+            echo json_encode($data);
+        }
         $newc->close();
     }
     public static function Where($column,$op,$string){

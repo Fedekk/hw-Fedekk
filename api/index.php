@@ -9,7 +9,6 @@ $parts = explode('/', $request);
 $resource = $parts[3];
 if(isset($parts[4]))
 $id = $parts[4];
-
 // Se l'utente inserisce un url del tipo /api/risorsa/id/altro non lo permetto!;
 if(!isset($parts[5]) && !isset($id)){
 
@@ -35,7 +34,6 @@ if(!isset($parts[5]) && !isset($id)){
         case "PATCH": 
         switch($resource){
             case "raccolte": 
-            echo "crirsto";
             RaccoltaController::update($_POST, $id); 
             break;
         }
@@ -68,12 +66,21 @@ elseif(!isset($parts[5]) && isset($id)){
         parse_str(file_get_contents('php://input'), $_PATCH);
         switch($resource){
             case "raccolte": 
-            print_r($_PATCH);
             RaccoltaController::update($_PATCH, $id); 
             break;
         }
         break;
         case "PUT": break;
+        case "DELETE": 
+        switch($resource){
+            case "contenuti":
+            ContenutoController::delete($id);
+            break;
+            case "raccolte":
+            RaccoltaController::delete($id);
+            break;
+        }
+        break;
     }
 }
 else{

@@ -3,6 +3,8 @@
 *   Home.php
 *
 */
+var host = "http://localhost/hw-Fedekk";
+
 function showRaccolte(elem){
     let idRaccolta = elem.dataset.videoId;
     let src = elem.dataset.thumb;
@@ -32,7 +34,6 @@ function addListVideo(elem){
 }
 
 function creaRaccolta(event){
-    event.preventDefault();
     let imgDefault = `https://www.beavertontkd.com/wp-content/uploads/2017/04/default-image.jpg`;
     let url = "http://localhost/hw-Fedekk/api/raccolte";
     let titolo = event.target.children.r.value;
@@ -207,19 +208,65 @@ function loadVideos(elem){
 *
 */
 
+function rimuoviVideo(elem, id, table){
+    console.log(id);
+    let url = `${host}/api/${table}/${id}`;
+    fetch(url, {
+        method: "DELETE"
+      })
+        .then(function(resp){
+            return resp.text();
+        })
+        .then(function(resp){
+            console.log(resp);
+            elem.remove();
+            // location.href = "home.php";
+        })
+        .catch(function(error){
+            console.log(error);
+        });
+}
+
+function gestisciBottone(e, contenuti) {
+    buttonRaccolta = `
+    <input type="button" name='delRaccolta' class="delete-raccolta" value="Cancella raccolta"/>
+    `;
+    check = document.querySelector('.element-raccolta').children.delRaccolta;
+    if(document.querySelector('.element-raccolta').children.delRaccolta){
+        document.querySelector('.element-raccolta').children.delRaccolta.remove();
+    }
+    else{
+        let tmp = document.querySelector('.element-raccolta');
+        tmp.innerHTML+= buttonRaccolta;
+        let raccolta = document.querySelector('#sparisci');
+        raccolta.addEventListener('click', gestisciBottone);
+        elem = document.querySelector('.delete-raccolta');
+        elem.addEventListener('click', function(e){
+            let elementi = document.querySelectorAll('.element-video');
+            for(let i=0;i<contenuti.length;i++)
+            rimuoviVideo(elementi[i], contenuti[i], "contenuti");
+            rimuoviVideo(tmp, tmp.dataset.tableId, "raccolte");
+        });
+        
+    }
+}
 function addListContent(elem){
     // Var
     let id = document.querySelector('.collections > input');
     let titolo = id.dataset.titolo;
     let src = id.dataset.thumb;
-    
+    let idRaccolta = id.value;
+
     // Rappresento la raccolta
     let element = document.querySelector('#content');
+    let buttonRaccolta = `
+    <input type="button" name='delRaccolta' class="delete-raccolta" value="Cancella raccolta"/>
+    `;
     element.innerHTML = "";
     let markup = 
-    `<div class="element-video" >
+    `<div class="element-raccolta" data-table-id='${idRaccolta}' >
         <h2>${titolo}</h2>
-        <img width='300px' height='200px' src="${src}" alt="${titolo}">
+        <img width='300px' id="sparisci" height='200px' src="${src}" alt="${titolo}">
     </div>`;
     element.innerHTML += markup;
 
@@ -227,10 +274,13 @@ function addListContent(elem){
     fetch(url)
     .then(resp => resp.json())
     .then(function(data){
+        let contentsId = [];
         for(let i=0;i<data.length;i++){
             let elemHidden = document.querySelector('#idRaccolta');
+            let id = data[i].id;
             let risorsa = data[i].risorsa;
             risorsa = JSON.parse(risorsa);
+            contentsId.push(data[i].id);
             let dataMarkup = {
                 idVideo: risorsa.idVideo,
                 titolo: risorsa.titolo,
@@ -241,17 +291,29 @@ function addListContent(elem){
             }
             if(dataMarkup.idRaccolta == elemHidden.value){
                 let markup = 
-                `<div class="element-video" data-video-id='${dataMarkup.idVideo}'>
+                `<div class="element-video" data-table-id='${id}' data-video-id='${dataMarkup.idVideo}'>
                     <h2 name="titolo">${dataMarkup.titolo}</h2>
                     <img name="imgurl" style="display:none;" src="${dataMarkup.imgurl}" alt="${dataMarkup.titolo}">
                     <div class="vid">
-                    <iframe src="http://www.youtube.com/embed/${dataMarkup.idVideo}" width="300px" height="200px" />
-                    </div>
                     <p name="description">Descrizione breve: ${dataMarkup.description}</p>
                     <p name="pubblicazione">Pubblicazione: ${dataMarkup.publishedAt}</p>
+                    <input type="button" name='delete' class="delete-video" value="Cancella video"/>
+                    <iframe src="http://www.youtube.com/embed/${dataMarkup.idVideo}" width="300px" height="200px" />
+                    </div>
                 </div>`;
                 element.innerHTML += markup;
             }
+        }
+        elem = document.querySelector('#sparisci');
+
+        elem.addEventListener('click', function(e){
+            gestisciBottone(e,contentsId);
+        });
+        elem = document.querySelectorAll('.delete-video');
+        for(temp of elem){
+            temp.addEventListener('click', function (e) {
+                rimuoviVideo(e.target.parentNode.parentNode, e.target.parentNode.parentNode.dataset.tableId, "contenuti");
+            });
         }
     });
 }

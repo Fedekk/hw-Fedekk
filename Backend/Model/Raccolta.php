@@ -49,5 +49,18 @@ class Raccolta extends Base{
         $newc->close();
         
     }
+    public function remove(){
+        $newc = new Connection();
+        $newc->connect();
+        $query = "DELETE FROM ".self::$table." WHERE id='".$this->id."'";
+        $result = mysqli_query($newc->conn,$query) or die("impossibile eseguire query: ".mysqli_error($newc->conn));
+        if($result){
+            $data = (object) [
+                'response' => 'OK'
+            ];
+        print_r(json_encode($data));
+        }
+        $newc->close();
+    }
 }
 

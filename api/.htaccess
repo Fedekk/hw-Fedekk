@@ -2,6 +2,10 @@
 #RewriteCond %{REQUEST_URI} !^/hw-Fedekk/api/index.php
 #RewriteRule .* /hw-Fedekk/api/index.php [R=Permanent,L]
 
+Header add Access-Control-Allow-Origin "*"
+Header add Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type"
+Header always set Access-Control-Allow-Methods: "GET,POST,OPTIONS,DELETE,PUT"
+
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

@@ -16,6 +16,11 @@ class ContenutoController extends Contenuto{
         $contenuto->risorsa = $request['risorsa'];
         $contenuto->save();
     }
+    public static function delete($id){
+        $contenuto = new Contenuto();
+        $contenuto->id = $id;
+        $contenuto->remove();
+    }
 }
 
 ?>

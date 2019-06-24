@@ -24,6 +24,11 @@ class RaccoltaController extends Raccolta{
         $raccolta->id = $id;
         $raccolta->up();
     }
+    public static function delete($id){
+        $raccolta = new Raccolta();
+        $raccolta->id = $id;
+        $raccolta->remove();
+    }
 }
 
 ?>
